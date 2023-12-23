@@ -3,7 +3,7 @@
 	"id": "mc-trails",
 	"version": "1.0.0",
 	"name": "Trails",
-	"description": "Customizable player trails with vanilla particles",
+	"description": "Customizable client-side player trails with vanilla particles!",
 	"authors": [
 		"Sootysplash"
 	],

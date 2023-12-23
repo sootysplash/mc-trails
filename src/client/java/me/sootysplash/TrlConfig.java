@@ -22,8 +22,8 @@ public class TrlConfig implements ConfigData {
         private static final Path file = FabricLoader.getInstance().getConfigDir().resolve("mc-trails.json");
         private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
         private static TrlConfig instance;
-        public String particle = "minecraft:heart";
-        public List<String> userparticlelist = List.of();
+        public String particle = "minecraft:ash";
+        public List<String> userparticlelist = List.of("minecraft:note 0", "minecraft:heart 1", "minecraft:angry_villager 2");
         public boolean random = false;
         public boolean ping = true;
         public int userDelay = 0;
