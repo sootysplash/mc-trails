@@ -7,6 +7,8 @@ import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import net.minecraft.text.Text;
 
+import java.util.List;
+
 public class TrlModMenu implements ModMenuApi {
 
         @Override
@@ -38,7 +40,7 @@ public class TrlModMenu implements ModMenuApi {
                         .build());
 
                 handle.addEntry(cfgHandle.startStringDropdownMenu(Text.of("Particle list:"), config.particle)
-                        .setDefaultValue("minecraft:heart")
+                        .setDefaultValue("minecraft:ash")
                         .setSelections(TrlClient.particleString())
                         .setSuggestionMode(false)
                         .setSaveConsumer(newValue -> config.particle = newValue)
@@ -48,6 +50,7 @@ public class TrlModMenu implements ModMenuApi {
                         .setInsertButtonEnabled(true)
                         .setExpanded(true)
                         .setDeleteButtonEnabled(true)
+                        .setDefaultValue(List.of("minecraft:note 0", "minecraft:heart 1", "minecraft:angry_villager 2"))
                         .setSaveConsumer(newValue -> config.userparticlelist = newValue)
                         .build());
 

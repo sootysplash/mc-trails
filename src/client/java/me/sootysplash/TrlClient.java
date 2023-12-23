@@ -5,7 +5,6 @@ import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Pair;
 import org.slf4j.Logger;
@@ -26,7 +25,7 @@ public class TrlClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		LOGGER.info("Hello Fabric world!");
+		LOGGER.info("mc-trails | Sootysplash was here");
 
 		WorldRenderEvents.END.register((tickDelta) -> {
 			if(mc == null || mc.getNetworkHandler() == null || mc.player == null) {
@@ -90,9 +89,7 @@ public class TrlClient implements ClientModInitializer {
 		List<ParticleEffect> particle = new ArrayList<>();
 		for(ParticleType<?> pk : Registries.PARTICLE_TYPE){
 				try {
-					if(!(pk == ParticleTypes.ELDER_GUARDIAN || pk == ParticleTypes.EXPLOSION || pk == ParticleTypes.EXPLOSION_EMITTER || pk == ParticleTypes.FLASH || pk == ParticleTypes.SONIC_BOOM || pk == ParticleTypes.SWEEP_ATTACK)) {
 						particle.add((ParticleEffect) pk);
-					}
 				} catch (Exception ignored) {}
 		}
 		return particle;

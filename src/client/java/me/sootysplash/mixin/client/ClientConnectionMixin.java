@@ -24,6 +24,8 @@ import net.minecraft.network.ClientConnection;
 import net.minecraft.network.PacketCallbacks;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
@@ -56,14 +58,18 @@ public abstract class ClientConnectionMixin implements ChannelInfoHolder {
 
                     pos = new Vec3d(move.getX(mc.player.getX()), move.getY(mc.player.getY()), move.getZ(mc.player.getZ()));
 
-                    int index;
+                    int index = 0;
                     TrlConfig config = TrlConfig.getInstance();
 
                     if (config.random) {
-                        index = Math.toIntExact(Math.round(Math.random() * TrlClient.particles().size()));
+                        ParticleEffect pk = ParticleTypes.ELDER_GUARDIAN;
+                        while ((pk == ParticleTypes.ELDER_GUARDIAN || pk == ParticleTypes.EXPLOSION || pk == ParticleTypes.EXPLOSION_EMITTER || pk == ParticleTypes.FLASH || pk == ParticleTypes.SONIC_BOOM || pk == ParticleTypes.SWEEP_ATTACK)){
+                            index = Math.toIntExact(Math.round(Math.random() * TrlClient.particles().size()));
                         if (index >= TrlClient.particles().size()) {
                             index--;
                         }
+                            pk = TrlClient.particles().get(index);
+                    }
                         TrlClient.particleMove.add(new Pair<>(List.of(TrlClient.particles().get(index), pos.x, pos.y, pos.z, (Math.random() - 0.5) / 2, (Math.random() - 0.5) / 2, (Math.random() - 0.5) / 2), System.currentTimeMillis() + TrlClient.finalPing + config.userDelay));
                     }else {
                         for (String particleInt : config.userparticlelist) {
