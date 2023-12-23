@@ -41,7 +41,7 @@ public class TrlClient implements ClientModInitializer {
 //					mc.inGameHud.getChatHud().addMessage(Text.of(" " + finalPing));
 				}
 
-			if(!particleMove.isEmpty()) {
+			if(!particleMove.isEmpty() && config.enabled) {
 				if (particleMove.get(0).getRight() < System.currentTimeMillis()) {
 
 					List<?> render = particleMove.get(0).getLeft();

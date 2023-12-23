@@ -26,6 +26,7 @@ public class TrlConfig implements ConfigData {
         public List<String> userparticlelist = List.of("minecraft:note 0", "minecraft:heart 1", "minecraft:angry_villager 2");
         public boolean random = false;
         public boolean ping = true;
+        public boolean enabled = true;
         public int userDelay = 0;
 
         public void save() {
