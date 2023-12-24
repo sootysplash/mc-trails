@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 public class TrlClient implements ClientModInitializer {
 	MinecraftClient mc = MinecraftClient.getInstance();
@@ -32,23 +31,24 @@ public class TrlClient implements ClientModInitializer {
 				return;
 			}
 
-				if (finalPing != Objects.requireNonNull(mc.getNetworkHandler().getPlayerListEntry(mc.player.getGameProfile().getName())).getLatency()) {
+			try {
+				if (finalPing != mc.getNetworkHandler().getPlayerListEntry(mc.player.getGameProfile().getName()).getLatency()) {
 					if (config.ping) {
-						finalPing = Objects.requireNonNull(mc.getNetworkHandler().getPlayerListEntry(mc.player.getGameProfile().getName())).getLatency();
+						finalPing = mc.getNetworkHandler().getPlayerListEntry(mc.player.getGameProfile().getName()).getLatency();
 					} else {
 						finalPing = 0;
 					}
 //					mc.inGameHud.getChatHud().addMessage(Text.of(" " + finalPing));
 				}
+			}catch (NullPointerException ignored){}
 
 			if(!particleMove.isEmpty() && config.enabled) {
 				if (particleMove.get(0).getRight() < System.currentTimeMillis()) {
 
-					try {
 						List<?> render = particleMove.get(0).getLeft();
 						particleMove.remove(0);
 						mc.particleManager.addParticle((ParticleEffect) render.get(0), (Double) render.get(1), (Double) render.get(2), (Double) render.get(3), (Double) render.get(4), (Double) render.get(5), (Double) render.get(6));
-					}catch (NullPointerException ignored){}
+
 
 				}
 			}
