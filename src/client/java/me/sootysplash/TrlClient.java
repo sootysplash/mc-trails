@@ -44,9 +44,11 @@ public class TrlClient implements ClientModInitializer {
 			if(!particleMove.isEmpty() && config.enabled) {
 				if (particleMove.get(0).getRight() < System.currentTimeMillis()) {
 
-					List<?> render = particleMove.get(0).getLeft();
-					particleMove.remove(0);
-					mc.particleManager.addParticle((ParticleEffect) render.get(0), (Double) render.get(1), (Double) render.get(2), (Double) render.get(3), (Double) render.get(4), (Double) render.get(5), (Double) render.get(6));
+					try {
+						List<?> render = particleMove.get(0).getLeft();
+						particleMove.remove(0);
+						mc.particleManager.addParticle((ParticleEffect) render.get(0), (Double) render.get(1), (Double) render.get(2), (Double) render.get(3), (Double) render.get(4), (Double) render.get(5), (Double) render.get(6));
+					}catch (NullPointerException ignored){}
 
 				}
 			}

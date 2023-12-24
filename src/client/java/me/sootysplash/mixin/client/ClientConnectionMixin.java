@@ -63,7 +63,7 @@ public abstract class ClientConnectionMixin implements ChannelInfoHolder {
 
                     if (config.random) {
                         ParticleEffect pk = ParticleTypes.ELDER_GUARDIAN;
-                        while ((pk == ParticleTypes.ELDER_GUARDIAN || pk == ParticleTypes.EXPLOSION || pk == ParticleTypes.EXPLOSION_EMITTER || pk == ParticleTypes.FLASH || pk == ParticleTypes.SONIC_BOOM || pk == ParticleTypes.SWEEP_ATTACK)){
+                        while (pk == ParticleTypes.ELDER_GUARDIAN || pk == ParticleTypes.EXPLOSION || pk == ParticleTypes.EXPLOSION_EMITTER || pk == ParticleTypes.FLASH || pk == ParticleTypes.SONIC_BOOM || pk == ParticleTypes.SWEEP_ATTACK){
                             index = Math.toIntExact(Math.round(Math.random() * TrlClient.particles().size()));
                         if (index >= TrlClient.particles().size()) {
                             index--;
@@ -83,10 +83,11 @@ public abstract class ClientConnectionMixin implements ChannelInfoHolder {
                                 if (matcher.find()) {
                                     particleInt = particleInt.replace(matcher.group(), "").replace(" ", "");
                                 }
-                                index = TrlClient.particleString().indexOf(particleInt);
+                                try {
+                                    index = TrlClient.particleString().indexOf(particleInt);
 
-                                TrlClient.particleMove.add(new Pair<>(List.of(TrlClient.particles().get(index), pos.x, pos.y, pos.z, (Math.random() - 0.5) / 2, (Math.random() - 0.5) / 2, (Math.random() - 0.5) / 2), System.currentTimeMillis() + TrlClient.finalPing + config.userDelay));
-
+                                    TrlClient.particleMove.add(new Pair<>(List.of(TrlClient.particles().get(index), pos.x, pos.y, pos.z, (Math.random() - 0.5) / 2, (Math.random() - 0.5) / 2, (Math.random() - 0.5) / 2), System.currentTimeMillis() + TrlClient.finalPing + config.userDelay));
+                                }catch(IndexOutOfBoundsException ignored){}
                             }
                         }
                         listPos++;
