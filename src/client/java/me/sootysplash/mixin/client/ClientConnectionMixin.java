@@ -86,7 +86,7 @@ public abstract class ClientConnectionMixin implements ChannelInfoHolder {
                                 try {
                                     index = TrlClient.particleString().indexOf(particleInt);
 
-                                    TrlClient.particleMove.add(new Pair<>(List.of(TrlClient.particles().get(index), pos.x, pos.y, pos.z, (Math.random() - 0.5) / 2, (Math.random() - 0.5) / 2, (Math.random() - 0.5) / 2), System.currentTimeMillis() + TrlClient.finalPing + config.userDelay));
+                                    TrlClient.particleMove.add(new Pair<>(List.of(TrlClient.particles().get(index), pos.x, pos.y, pos.z, 0.0, 0.1, 0.0), System.currentTimeMillis() + TrlClient.finalPing + config.userDelay));
                                 }catch(IndexOutOfBoundsException ignored){}
                             }
                         }
