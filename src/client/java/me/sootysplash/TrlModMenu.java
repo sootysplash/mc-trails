@@ -24,7 +24,7 @@ public class TrlModMenu implements ModMenuApi {
                 ConfigCategory handle = builder.getOrCreateCategory(Text.of("Handling"));
                 ConfigEntryBuilder cfgHandle =  builder.entryBuilder();
 
-                handle.addEntry(cfgHandle.startBooleanToggle(Text.of("Enabled"), config.random)
+                handle.addEntry(cfgHandle.startBooleanToggle(Text.of("Enabled"), config.enabled)
                         .setDefaultValue(true)
                         .setSaveConsumer(newValue -> config.enabled = newValue)
                         .build());
