@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "mc-trails",
+	"version": "1.0.0",
+	"name": "Trails",
+	"description": "Customizable client-side player trails with vanilla particles!",
+	"authors": [
+		"Sootysplash"
+	],
+	"contact": {
+		"homepage": "https://github.com/sootysplash",
+		"sources": "https://github.com/sootysplash/mc-trails"
+	},
+	"license": "Apache-2.0",
+	"icon": "assets/mc-trails/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"client": [
+			"me.sootysplash.TrlClient"
+		],
+		"modmenu": [
+			"me.sootysplash.TrlModMenu"
+		]
+	},
+	"mixins": [
+		{
+			"config": "mc-trails.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.14.5",
+		"minecraft": ">=1.19.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
